@@ -4,23 +4,22 @@
  * and open the template in the editor.
  */
 
-package Game;
+package bjack_interface_v1.pkg0;
 
 /**
  *
- * @author 801763
+ * @author Ромочка
  */
 import java.util.Random;
 public class Pack {
-    Card[] cards;
+    public Card[] cards;
     
     public Pack()
     {
         cards = new Card[53];
         for(int i = 0; i < 53; i++)
         {
-            Card crd = new Card(i+1, true);
-            cards[i] = crd;
+            cards[i] = new Card(i+1);
         }
     }
     public void print()

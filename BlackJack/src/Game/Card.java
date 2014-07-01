@@ -4,24 +4,25 @@
  * and open the template in the editor.
  */
 
-package Game;
+package bjack_interface_v1.pkg0;
 
 /**
  *
- * @author 801763
+ * @author Ромочка
  */
 public class Card {
-    int number;
-    int weight;
-    Boolean mark;
+    public int number;
+    public int weight;
+    public Boolean mark;
     
-    public Card(int num, Boolean mk) // по сути не используется
+    public Card(int num) // по сути не используется
     {
         number = num;
         weight = buildWeight(num);
-        mark = mk;
+        mark = true;
     }
-    public Card(){}
+    public Card(){
+    }
     public void setCard(int num, Boolean mk) //вставить карту
     {
         number = num;

@@ -1,10 +1,10 @@
-package Game;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+package bjack_interface_v1.pkg0;
 
 
 import java.awt.*;
@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 /**
  *
- * @author
+ * @author Ромочка
  */
 public class Bjack_interface_v1 extends javax.swing.JFrame {
     
@@ -55,6 +55,9 @@ public class Bjack_interface_v1 extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Блек Джек (без куртизанок)");
@@ -121,6 +124,15 @@ public class Bjack_interface_v1 extends javax.swing.JFrame {
 
         jLabel4.setText("0");
 
+        jLabel5.setText(" ");
+        jLabel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        jLabel6.setLabelFor(jButton3);
+        jLabel6.setText("Очки врага:");
+
+        jLabel7.setLabelFor(jLabel6);
+        jLabel7.setText("?");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,9 +141,7 @@ public class Bjack_interface_v1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,19 +155,37 @@ public class Bjack_interface_v1 extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4))
-                            .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,7 +197,7 @@ public class Bjack_interface_v1 extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -177,40 +205,58 @@ public class Bjack_interface_v1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int i = You.takeCard(Coloda);
+        int i = You.takeCard(Coloda);                
+        PaintCard(i,grYou);
+        
+        if (You.getPoints() > 21)
+        {
+            if(You.hasAce()) You.takeAce();
+            if(You.getPoints() > 21)
+            {
+//                JOptionPane.showMessageDialog(jPanel1, "Увы, вы набрали больше "
+//                        + "21 очка! Вы проиграли!", 
+//                    "Проигрыш", JOptionPane.INFORMATION_MESSAGE);
+                jLabel5.setText("Вы набрали больше 21 очка! Вы проиграли!");
+                jButton3.setEnabled(false);
+                jButton1.setEnabled(false);
+//                ResetGame();
+            }
+        }
         int tmp;
         tmp = You.getPoints();
         jLabel4.setText(Integer.toString(tmp));
-        PaintCard(i,grYou);
-        if (You.getPoints() > 21)
-        {
-            JOptionPane.showMessageDialog(jPanel1, "Увы, вы набрали больше "
-                    + "21 очка! Вы проиграли!", 
-                "Проигрыш", JOptionPane.INFORMATION_MESSAGE);
-            ResetGame();
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         InitEnemy();
+        
         if (You.getPoints() > Enemy.getPoints() || Enemy.getPoints() > 21) {
-            JOptionPane.showMessageDialog(jPanel1, "Вы выйграли!"
-                    + " Поздравляем!\nВаши очки - "+You.getPoints()+"\n"
-                    + "Очки противника - "+Enemy.getPoints(), 
-                    "Победа", JOptionPane.INFORMATION_MESSAGE);
+//            JOptionPane.showMessageDialog(jPanel1, "Вы выйграли!"
+//                    + " Поздравляем!\nВаши очки - "+You.getPoints()+"\n"
+//                    + "Очки противника - "+Enemy.getPoints(), 
+//                    "Победа", JOptionPane.INFORMATION_MESSAGE);
+            jLabel5.setText("Поздравляем! Вы выйграли");
         }
         else if (You.getPoints() < Enemy.getPoints() && Enemy.getPoints() <= 21) {
-            JOptionPane.showMessageDialog(jPanel1, "Увы! Вы проиграли!\n"
-                    + "Ваши очки - "+You.getPoints()+"\n"
-                    + "Очки противника - "+Enemy.getPoints(), 
-                    "Проигрыш", JOptionPane.INFORMATION_MESSAGE);
+//        JOptionPane.showMessageDialog(jPanel1, "Увы! Вы проиграли!\n"
+//                + "Ваши очки - "+You.getPoints()+"\n"
+//                + "Очки противника - "+Enemy.getPoints(), 
+//                "Проигрыш", JOptionPane.INFORMATION_MESSAGE);
+            jLabel5.setText("Увы! Вы проиграли");
         }
         else {
-            JOptionPane.showMessageDialog(jPanel1, "Невероятно! Ничья!", 
-                    "Победа", JOptionPane.INFORMATION_MESSAGE);
+//            JOptionPane.showMessageDialog(jPanel1, "Невероятно! Ничья!", 
+//                    "Победа", JOptionPane.INFORMATION_MESSAGE);
+            jLabel5.setText("Невероятно! Ничья");
         }
-        ResetGame();
+        showShuflerCards();
+        String s = String.valueOf(Enemy.getPoints());
+        jLabel7.setText(s);
+        jButton3.setEnabled(false);
+        jButton1.setEnabled(false);
+
+//        ResetGame();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -220,6 +266,7 @@ public class Bjack_interface_v1 extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        ResetGame();
         int l = 0;
         for (int j = 0; j < 2; j++) {
             if (l==0)
@@ -261,23 +308,36 @@ public class Bjack_interface_v1 extends javax.swing.JFrame {
         jButton3.setEnabled(false);
         jButton4.setEnabled(false);
         jLabel4.setText("0");
+        jLabel5.setText(" ");
+        jLabel7.setText("?");
+
     }
     
     private void InitEnemy() {
         while (Enemy.getPoints() <= 17) {
             int i = Enemy.takeCard(Coloda);
+            if (Enemy.getPoints() > 21)             
+                if(Enemy.hasAce()) You.takeAce();
             PaintCard(53,grEnemy);
         }
+    }
+    private void showShuflerCards()
+    {
+        x_grEnemy = 5;
+        grEnemy.setColor(Color.white);
+        grEnemy.fillRect(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+        for(int i = 0; i < Enemy.numberList.size(); i++)
+            PaintCard(Enemy.numberList.get(i),grEnemy);
     }
     private void PaintCard(int i, Graphics g) {
         Image img;
         try {
             img = ImageIO.read(new File("images/"+i+".png"));
-            if (g == grEnemy) {
+            if (g.equals(grEnemy)) {
                 g.drawImage(img, x_grEnemy, 5, null);
                 x_grEnemy += 135;
             }
-            else if (g == grYou) {
+            else if (g.equals(grYou)) {
                 g.drawImage(img, x_grYou, 5, null);
                 x_grYou += 135;
             }
@@ -310,14 +370,19 @@ public class Bjack_interface_v1 extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Bjack_interface_v1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Bjack_interface_v1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Bjack_interface_v1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Bjack_interface_v1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 new Bjack_interface_v1().setVisible(true);
             }
@@ -333,6 +398,9 @@ public class Bjack_interface_v1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

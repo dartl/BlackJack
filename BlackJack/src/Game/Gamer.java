@@ -4,19 +4,13 @@
  * and open the template in the editor.
  */
 
-package bjack_interface_v1.pkg0;
+package Game;
 
-/**
- *
- * @author Ромочка
- */
+
 import java.util.ArrayList;
 public class Gamer {
-//    public static void main(String[] args) {
-//        // TODO code application logic here
-//        
-//    }
-    int Points;
+
+    private int Points;
     ArrayList <Integer> weightList;
     ArrayList <Integer> numberList;
     
@@ -59,6 +53,5 @@ public class Gamer {
         weightList.clear();
         numberList.clear();
     }
-    
-    
+
 }

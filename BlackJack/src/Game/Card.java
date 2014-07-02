@@ -4,16 +4,13 @@
  * and open the template in the editor.
  */
 
-package bjack_interface_v1.pkg0;
+package Game;
 
-/**
- *
- * @author Ромочка
- */
+
 public class Card {
-    public int number;
-    public int weight;
-    public Boolean mark;
+    private int number;
+    private int weight;
+    private Boolean mark;
     
     public Card(int num) // по сути не используется
     {
@@ -21,8 +18,7 @@ public class Card {
         weight = buildWeight(num);
         mark = true;
     }
-    public Card(){
-    }
+    public Card(){}
     public void setCard(int num, Boolean mk) //вставить карту
     {
         number = num;
@@ -59,6 +55,18 @@ public class Card {
     public int getNumber()
     {
         return number;
+    }
+    public void show()
+    {
+        mark = true;
+    }
+    public void hide()
+    {
+        mark = false;
+    }
+    public Boolean getMark()
+    {
+        return mark;
     }
     //Boolean getMark {return Mark;}
 }

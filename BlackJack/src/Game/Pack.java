@@ -4,12 +4,9 @@
  * and open the template in the editor.
  */
 
-package bjack_interface_v1.pkg0;
+package Game;
 
-/**
- *
- * @author Ромочка
- */
+
 import java.util.Random;
 public class Pack {
     public Card[] cards;
@@ -31,25 +28,25 @@ public class Pack {
     {
         Random rand = new Random();   
         int n = rand.nextInt(52);
-        while(!cards[n].mark) n = rand.nextInt(52);
-        cards[n].mark = false;
+        while(!cards[n].getMark()) n = rand.nextInt(52);
+        cards[n].hide();
         return cards[n];
     }
     public void putCardBack(Card crd) //положить карту обратно, не используется
     {
         for(int i=0; i < 53; i++)
-            if(crd.number == cards[i].number)
-                cards[i].mark = true;
+            if(crd.getNumber() == cards[i].getNumber())
+                cards[i].show();
     }
     public void putCardBack(int num) // положить карту обратно, не используется
     {
         for(int i=0; i < 53; i++)
-            if(num == cards[i].number)
-                cards[i].mark = true;
+            if(num == cards[i].getNumber())
+                cards[i].show();
     }
     public void reserPack() // вернуть все карты в колоду
     {
         for(int i=0; i < 53; i++)
-            cards[i].mark = true;
+            cards[i].show();
     }
 }

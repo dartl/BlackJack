@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package bjack_interface_v1.pkg0;
+package Game;
 
 
 import java.awt.*;
@@ -282,8 +282,9 @@ public class Bjack_interface_v1 extends javax.swing.JFrame {
             }
             int i = You.takeCard(Coloda);
             PaintCard(i,grYou);
-            
         }
+        if(You.getPoints() > 21)
+            You.takeAce();
         int tmp;
         tmp = You.getPoints();
         jLabel4.setText(Integer.toString(tmp));

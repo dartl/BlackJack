@@ -14,10 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-/**
- *
- * @author Ромочка
- */
+
+
 public class Bjack_interface_v1 extends javax.swing.JFrame {
     
     Graphics grEnemy;
@@ -336,11 +334,11 @@ public class Bjack_interface_v1 extends javax.swing.JFrame {
             img = ImageIO.read(new File("images/"+i+".png"));
             if (g.equals(grEnemy)) {
                 g.drawImage(img, x_grEnemy, 5, null);
-                x_grEnemy += 135;
+                x_grEnemy += 25;
             }
             else if (g.equals(grYou)) {
                 g.drawImage(img, x_grYou, 5, null);
-                x_grYou += 135;
+                x_grYou += 25;
             }
         } catch (IOException ex) {
             Logger.getLogger(Bjack_interface_v1.class.getName()).log(Level.SEVERE, null, ex);
